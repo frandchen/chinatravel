@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>China Travel Copilot — The Offline Survival Kit for Foreign Travelers in China</title>
+<meta name="description" content="China Travel Copilot is the offline survival kit for foreign travelers in China. 24 city guides, 500+ Chinese phrases, full-screen address cards for taxi drivers, scam-prevention tips, and an emergency hub — all working without WeChat, without Google, without a SIM." />
+<meta name="theme-color" content="#C8102E" />
+<meta property="og:title" content="China Travel Copilot — Offline Survival Kit for Foreign Travelers in China" />
+<meta property="og:description" content="Don't let a frozen Google Maps ruin your trip. 24 cities, 500+ phrases, taxi-ready address cards, and emergency help — fully offline." />
+<meta property="og:type" content="website" />
+<style>
+  :root {
+    --red: #C8102E;
+    --red-dark: #9E0C24;
+    --gold: #F5C518;
+    --ink: #1A1A1F;
+    --muted: #5C5C66;
+    --bg: #FFFAF5;
+    --card: #FFFFFF;
+    --line: #EAE3D8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  a { color: var(--red); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header.site {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  .brand .mark {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 16px;
+  }
+  .brand .name { font-size: 16px; }
+  .nav-links a { margin-left: 22px; color: var(--ink); font-size: 14px; }
+
+  /* Hero */
+  .hero {
+    padding: 72px 0 56px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.08;
+    margin: 0 0 18px;
+    letter-spacing: -0.5px;
+  }
+  .hero .tagline {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0 auto 28px;
+  }
+  .hero .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #000; color: #fff; padding: 14px 22px; border-radius: 12px;
+    font-weight: 600; font-size: 15px;
+  }
+  .hero .pricing {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .hero .badges {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-top: 28px;
+  }
+  .badge {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .badge .dot { color: var(--red); margin-right: 6px; }
+
+  /* Pain section */
+  .pain {
+    background: #fff;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 64px 0;
+  }
+  .section-title {
+    font-size: clamp(24px, 3vw, 34px);
+    margin: 0 0 8px;
+    text-align: center;
+  }
+  .section-sub {
+    color: var(--muted);
+    text-align: center;
+    margin: 0 auto 40px;
+    max-width: 680px;
+  }
+  .pain-grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .pain-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .pain-card h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .pain-card .icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: rgba(200, 16, 46, 0.1);
+    color: var(--red);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .pain-card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .pain-card .fix {
+    margin-top: 10px; font-size: 13.5px; color: var(--ink);
+    font-weight: 600;
+  }
+  .pain-card .fix::before { content: "✓ "; color: #1F8A4C; font-weight: 800; }
+
+  /* Features */
+  .features { padding: 80px 0; }
+  .feat-grid {
+    display: grid; gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .feat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.15s ease;
+  }
+  .feat:hover { transform: translateY(-2px); }
+  .feat .emoji { font-size: 28px; margin-bottom: 10px; }
+  .feat h3 { margin: 0 0 6px; font-size: 18px; }
+  .feat p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+  /* Highlight band */
+  .band {
+    background: linear-gradient(135deg, #1A1A1F, #2A1416);
+    color: #fff;
+    padding: 64px 0;
+    text-align: center;
+  }
+  .band h2 { font-size: clamp(24px, 3vw, 32px); margin: 0 0 16px; }
+  .band p { color: #D9D9DE; max-width: 680px; margin: 0 auto 24px; }
+  .band .stats {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 28px;
+    margin-top: 24px;
+  }
+  .stat .num {
+    font-size: 32px; font-weight: 800; color: var(--gold);
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-size: 13px; color: #BDBDC4; margin-top: 6px; letter-spacing: 0.3px;
+  }
+
+  /* Pricing */
+  .pricing-section { padding: 72px 0; }
+  .price-grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-top: 32px;
+  }
+  .price-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 16px; padding: 24px;
+    display: flex; flex-direction: column;
+  }
+  .price-card.featured {
+    border-color: var(--red);
+    box-shadow: 0 8px 24px rgba(200, 16, 46, 0.08);
+    position: relative;
+  }
+  .price-card.featured::before {
+    content: "MOST POPULAR";
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: var(--red); color: #fff; font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px; letter-spacing: 0.5px;
+  }
+  .price-card h3 { margin: 0 0 4px; font-size: 18px; }
+  .price-card .desc { color: var(--muted); font-size: 13.5px; margin-bottom: 14px; }
+  .price-card .price {
+    font-size: 30px; font-weight: 800; margin-bottom: 4px;
+  }
+  .price-card .price small { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .price-card ul {
+    list-style: none; padding: 0; margin: 14px 0 0;
+    color: var(--ink); font-size: 14px;
+  }
+  .price-card ul li {
+    padding: 5px 0;
+  }
+  .price-card ul li::before {
+    content: "✓"; color: #1F8A4C; font-weight: 800; margin-right: 8px;
+  }
+  .price-card .note { color: var(--muted); font-size: 12.5px; margin-top: 14px; }
+
+  /* FAQ */
+  .faq { padding: 64px 0; background: #fff; border-top: 1px solid var(--line); }
+  details {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: " +"; color: var(--red); float: right; }
+  details[open] summary::after { content: " –"; }
+  details p { margin: 10px 0 0; color: var(--muted); font-size: 14.5px; }
+
+  /* Footer */
+  footer.site {
+    padding: 36px 0;
+    border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 13px; text-align: center;
+  }
+  footer.site a { color: var(--ink); margin: 0 8px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="container nav">
+    <div class="brand">
+      <div class="mark">中</div>
+      <span class="name">China Travel Copilot</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>The offline survival kit<br/>for foreign travelers in China.</h1>
+    <p class="tagline">
+      Google Maps doesn't work. WhatsApp is blocked. The taxi driver doesn't speak English.
+      China Travel Copilot is the one app you open when nothing else works — fully offline,
+      one-time purchase, no subscription.
+    </p>
+    <a href="#pricing" class="cta">Available on the App Store →</a>
+    <div class="pricing">One-time purchase from <strong>$2.99</strong> · No subscription · No ads</div>
+
+    <div class="badges">
+      <span class="badge"><span class="dot">●</span> 100% offline</span>
+      <span class="badge"><span class="dot">●</span> 24 cities included</span>
+      <span class="badge"><span class="dot">●</span> 500+ Chinese phrases</span>
+      <span class="badge"><span class="dot">●</span> Emergency hub free forever</span>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain">
+  <div class="container">
+    <h2 class="section-title">Built for the moments where other apps fail you.</h2>
+    <p class="section-sub">
+      We talked to hundreds of travelers. These are the five moments that make people panic in China.
+      Every feature in this app exists to solve one of them.
+    </p>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <h3><span class="icon">🛬</span>You just landed and your phone is useless.</h3>
+        <p>Google, Gmail, WhatsApp, Instagram — all blocked. No SIM, no eSIM, no airport Wi-Fi.</p>
+        <div class="fix">Everything is preloaded. Works in airplane mode.</div>
+      </div>
+
+      <div class="pain-card">
+        <h3><span class="icon">🚖</span>The taxi driver can't read your hotel name.</h3>
+        <p>Latin letters mean nothing to most local drivers. You point at your phone — they shake their head.</p>
+        <div class="fix">Full-screen Chinese address cards designed for drivers.</div>
+      </div>
+
+      <div class="pain-card">
+        <h3><span class="icon">🍜</span>The menu is a wall of Chinese characters.</h3>
+        <p>No pictures. No English. The waiter is waiting. You point at random and hope.</p>
+        <div class="fix">500+ phrases for ordering, allergies, "no spicy", and more.</div>
+      </div>
+
+      <div class="pain-card">
+        <h3><span class="icon">💳</span>Cash isn't accepted, and Alipay is confusing.</h3>
+        <p>Even the noodle stall expects you to scan. You don't know which app, which button, which step.</p>
+        <div class="fix">Step-by-step payment guide written for first-time visitors.</div>
+      </div>
+
+      <div class="pain-card">
+        <h3><span class="icon">🚨</span>Something goes wrong, and you don't know who to call.</h3>
+        <p>Lost passport, food poisoning, phone stolen. You panic in a language you don't speak.</p>
+        <div class="fix">Emergency hub: numbers, hospital phrases, "I lost my passport" card. Always free.</div>
+      </div>
+
+      <div class="pain-card">
+        <h3><span class="icon">⚠️</span>Tourist scams target people exactly like you.</h3>
+        <p>Tea-house scam, fake "art student", inflated taxi fares. Locals know — you don't.</p>
+        <div class="fix">Scam-prevention tips written by people who actually live in China.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <h2 class="section-title">Everything you need, before you need it.</h2>
+    <p class="section-sub">
+      China Travel Copilot bundles a city guide, a phrasebook, a translator card, an emergency hub,
+      and a pre-trip checklist into one offline app. No login. No tracking. No surprises.
+    </p>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="emoji">📡</div>
+        <h3>Truly offline</h3>
+        <p>All 24 cities, 500+ phrases, and emergency content are bundled inside the app. No SIM, no Wi-Fi, no problem.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">🏙️</div>
+        <h3>24 hand-curated cities</h3>
+        <p>Beijing, Shanghai, Xi'an, Chengdu, Guilin, Lhasa, Hong Kong, Macau and more. Top attractions, where to stay, when to visit, how long to spend.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">🗺️</div>
+        <h3>Ready-made itineraries</h3>
+        <p>1-day, 3-day, and 7-day routes per city, with timing, transport tips, and Chinese addresses you can hand to a driver.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">💬</div>
+        <h3>500+ Chinese phrases</h3>
+        <p>Taxi, hotel, restaurant, shopping, hospital, train station, airport — categorized for the moment you need them. One tap to copy.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">🪪</div>
+        <h3>Address cards for drivers</h3>
+        <p>Tap any address to fill the entire screen with huge, high-contrast Chinese characters. Ideal for taxi drivers and hotel front desks.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">🆘</div>
+        <h3>Emergency hub — always free</h3>
+        <p>Police, ambulance, fire, embassy phone numbers, "I need a doctor" cards, lost-passport flow. We will never put this behind a paywall.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">✅</div>
+        <h3>Pre-departure checklist</h3>
+        <p>Visa, eSIM, VPN-aware tools, payment apps, power adapters, recommended apps to install before boarding.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">🛡️</div>
+        <h3>Scam-prevention tips</h3>
+        <p>The five most common tourist traps in China and exactly what to say or do to avoid them.</p>
+      </div>
+
+      <div class="feat">
+        <div class="emoji">🔒</div>
+        <h3>Privacy-first by design</h3>
+        <p>No account required. No location tracking. No ads. We don't even know your name. See our <a href="privacy.html">privacy policy</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAND -->
+<section class="band">
+  <div class="container">
+    <h2>One trip. One app. One purchase.</h2>
+    <p>
+      You're going to spend $50 on airport Wi-Fi, $80 on data roaming, and $200 on a tour guide
+      who speaks broken English. Or you can spend less than a coffee — once — and have it all in your pocket.
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="num">24</div><div class="lbl">CITIES OFFLINE</div></div>
+      <div class="stat"><div class="num">500+</div><div class="lbl">CHINESE PHRASES</div></div>
+      <div class="stat"><div class="num">10</div><div class="lbl">SCENARIO CATEGORIES</div></div>
+      <div class="stat"><div class="num">0</div><div class="lbl">SUBSCRIPTIONS</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <h2 class="section-title">Simple, honest pricing.</h2>
+    <p class="section-sub">No subscription. No auto-renewal. Pay once, use it for every trip you ever take to China.</p>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Free</h3>
+        <div class="desc">Get started with the essentials.</div>
+        <div class="price">$0</div>
+        <ul>
+          <li>All 24 city overviews</li>
+          <li>All attraction lists</li>
+          <li>All recommended itineraries</li>
+          <li>20 most-used phrases</li>
+          <li>3 address-card copies / day</li>
+          <li>Full emergency hub</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <h3>Phrasebook Pack</h3>
+        <div class="desc">For travelers who just need to talk.</div>
+        <div class="price">$2.99 <small>one-time</small></div>
+        <ul>
+          <li>500+ Chinese phrases (10 categories)</li>
+          <li>Unlimited address-card copies</li>
+          <li>Full-screen mode for drivers</li>
+          <li>Lifetime access</li>
+        </ul>
+        <div class="note">Restorable across all your Apple devices.</div>
+      </div>
+
+      <div class="price-card featured">
+        <h3>Full Pro</h3>
+        <div class="desc">Everything, for your entire trip.</div>
+        <div class="price">$6.99 <small>one-time</small></div>
+        <ul>
+          <li>Everything in Phrasebook Pack</li>
+          <li>Menu translation mode</li>
+          <li>Full payment guide (Alipay / WeChat Pay)</li>
+          <li>Scam-prevention guide</li>
+          <li>Saved trip checklist progress</li>
+          <li>Lifetime access</li>
+        </ul>
+        <div class="note">First 24 hours after install: launch offer $3.99.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="section-title">Questions, answered.</h2>
+    <p class="section-sub">If something isn't covered here, email us at <a href="mailto:support@chinatravelcopilot.app">support@chinatravelcopilot.app</a>.</p>
+
+    <details>
+      <summary>Does the app really work offline?</summary>
+      <p>Yes. All 24 city guides, attractions, recommended routes, 500+ phrases, address cards, and the emergency hub are bundled inside the app at install time. You don't need a SIM, eSIM, hotel Wi-Fi, or VPN to use any of it. The only optional online feature is "check for content updates" in Settings.</p>
+    </details>
+
+    <details>
+      <summary>Is this a subscription?</summary>
+      <p>No. China Travel Copilot does not use subscriptions. You pay once, you own it forever, on every Apple device that uses the same Apple ID. We will never auto-charge you.</p>
+    </details>
+
+    <details>
+      <summary>I switched to a new iPhone. How do I get my purchase back?</summary>
+      <p>Open Settings inside the app and tap "Restore Purchase". Make sure you're signed into the same Apple ID you used for the original purchase. Your access will be restored within seconds.</p>
+    </details>
+
+    <details>
+      <summary>Do you collect my location, contacts, or personal data?</summary>
+      <p>No. We don't request location permission, we don't read contacts, we don't ask for an email or phone number. The app uses an anonymous device-only identifier just to count app opens. Read the <a href="privacy.html">privacy policy</a> for full details.</p>
+    </details>
+
+    <details>
+      <summary>What if I have an emergency in China?</summary>
+      <p>Open the Emergency tab. You will find police (110), ambulance (120), fire (119), tourist hotline (12301), embassy lookup, and printable Chinese cards for "I need a doctor", "I lost my passport", "Please call my hotel". This section is always free, even if you never purchase anything.</p>
+    </details>
+
+    <details>
+      <summary>Which cities are included?</summary>
+      <p>Beijing, Shanghai, Xi'an, Chengdu, Chongqing, Guangzhou, Shenzhen, Hangzhou, Suzhou, Guilin, Lhasa, Lijiang, Kunming, Sanya, Harbin, Huangshan, Zhangjiajie, Hong Kong, Macau, Nanchang, Shangrao, and more — 24 in total at launch, with free updates added over time.</p>
+    </details>
+
+    <details>
+      <summary>Will my emergency contacts work without a Chinese SIM?</summary>
+      <p>Chinese emergency numbers (110 / 119 / 120) can be dialed from most foreign phones in China even without a local SIM, as long as your phone has any signal. Your embassy may require a working SIM or Wi-Fi calling — that's why we ship the numbers in advance, so you can write them down before you fly.</p>
+    </details>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site">
+  <div class="container">
+    <div>© <span id="y"></span> China Travel Copilot. Made for travelers who refuse to be lost in translation.</div>
+    <div style="margin-top: 10px;">
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="mailto:support@chinatravelcopilot.app">Support</a> ·
+      <a href="mailto:support@chinatravelcopilot.app">Contact</a>
+    </div>
+    <div style="margin-top: 10px; color: #999;">
+      App Store, Apple, and the Apple logo are trademarks of Apple Inc.
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
